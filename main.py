@@ -15,9 +15,9 @@ class ShutdownNotice(QWidget):
     def init_ui(self):
         # 窗口基本设置
         self.setWindowTitle('关闭提示')
-        self.setFixedSize(800, 650)
+        self.setFixedSize(800, 600)
         # 删除标题栏
-        self.setWindowFlags(self.windowFlags() | Qt.FramelessWindowHint)
+        self.setWindowFlags(self.windowFlags() | Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
 
         # 主布局
         layout = QVBoxLayout()
