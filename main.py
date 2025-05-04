@@ -97,7 +97,7 @@ class ShutdownNotice(QWidget):
         """执行关机操作"""
         system = platform.system()
         if system == "Windows":
-            os.system("shutdown /s /t 0")
+            os.system("shutdown -s -f -t 0")
 
 
 if __name__ == '__main__':
