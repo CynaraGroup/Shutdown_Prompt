@@ -41,7 +41,7 @@ class ShutdownNotice(QWidget):
         self.lbl_countdown.setStyleSheet("color: #ff4444;")
 
         # 底部信息
-        lbl_footer = QLabel("© 2025 MicroFire, All rights reserved.\n萌ICP备20250202号")
+        lbl_footer = QLabel("© 2025 Cynara, All rights reserved.\n萌ICP备20250202号")
         lbl_footer.setFont(QFont("Microsoft YaHei", 8))
         lbl_footer.setAlignment(Qt.AlignCenter)
         lbl_footer.setStyleSheet("color: #666666;")
@@ -52,7 +52,6 @@ class ShutdownNotice(QWidget):
         layout.addWidget(self.lbl_countdown)
         layout.addStretch()
         layout.addWidget(lbl_footer)
-
         self.setLayout(layout)
 
         # 初始化倒计时显示
