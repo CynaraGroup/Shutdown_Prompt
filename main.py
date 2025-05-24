@@ -30,7 +30,7 @@ class ShutdownNotice(QWidget):
         lbl_title.setAlignment(Qt.AlignCenter)
 
         # 正文内容
-        lbl_content = QLabel("所有灯光、窗户、多媒体\n关机倒计时")
+        lbl_content = QLabel("空调、灯光、窗户、多媒体\n关机倒计时")
         lbl_content.setFont(QFont("Microsoft YaHei", 24))
         lbl_content.setAlignment(Qt.AlignCenter)
 
