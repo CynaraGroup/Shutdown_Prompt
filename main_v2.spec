@@ -12,7 +12,7 @@ a = Analysis(['main_v2.py'],
              datas=[
                  ('dingtalk.ttf', '.'),
                  ('zhengqingke.ttf', '.'),
-                 ('logo.ico', '.')
+                 ('logo.ico', '.')  # 改为ico格式
              ],
              hiddenimports=['win32com.client', 'pythoncom'],
              hookspath=[],
@@ -42,5 +42,5 @@ exe = EXE(pyz,
           disable_windowed_traceback=False,
           target_arch=None,
           codesign_identity=None,
-          icon='logo.ico',
+          icon='logo.ico',  # 改为ico格式
           entitlements_file=None )
