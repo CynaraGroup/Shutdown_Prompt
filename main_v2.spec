@@ -1,12 +1,23 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+import os
+from pathlib import Path
+
 block_cipher = None
 
+# 获取当前文件所在目录，确保路径兼容不同操作系统
+current_dir = Path(__file__).parent.absolute()
+
 a = Analysis(['main_v2.py'],
-             pathex=['d:\\Users\\Desktop\\Project\\Shutdown_Prompt'],
+             pathex=[str(current_dir)],  # 使用当前目录作为路径
              binaries=[],
-             datas=[('dingtalk.ttf', '.'), ('zhengqingke.ttf', '.'),('logo.ico', '.')],
-             hiddenimports=['win32com.client', 'pythoncom'],  # 添加Office相关隐藏导入
+             # 使用绝对路径引用资源文件，确保在CI环境中能正确找到
+             datas=[
+                 (str(current_dir / 'dingtalk.ttf'), '.'),
+                 (str(current_dir / 'zhengqingke.ttf'), '.'),
+                 (str(current_dir / 'logo.ico'), '.')
+             ],
+             hiddenimports=['win32com.client', 'pythoncom'],
              hookspath=[],
              runtime_hooks=[],
              excludes=[],
@@ -30,9 +41,10 @@ exe = EXE(pyz,
           upx=True,
           upx_exclude=[],
           runtime_tmpdir=None,
-          console=False,  # 设置为False不显示控制台窗口
+          console=False,
           disable_windowed_traceback=False,
           target_arch=None,
           codesign_identity=None,
-          icon='./logo.ico',
+          # 使用绝对路径引用图标
+          icon=str(current_dir / 'logo.ico'),
           entitlements_file=None )
