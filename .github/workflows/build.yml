@@ -24,7 +24,7 @@ jobs:
 
       - name: Compile to EXE using spec file
         run: |
-          pyinstaller main_v2.spec
+          pyinstaller -i logo.ico main_v2.py
 
       - name: Create zip package
         run: |
