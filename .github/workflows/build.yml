@@ -31,7 +31,12 @@ jobs:
 
       - name: Rename EXE
         run: |
-          Rename-Item -Path dist\main_v2.exe -NewName dist\ShutdownPrompt.exe
+          if (Test-Path -Path "dist\main_v2.exe") {
+            Rename-Item -Path "dist\main_v2.exe" -NewName "ShutdownPrompt.exe" -Force
+          } else {
+            Write-Error "Source file not found: dist\main_v2.exe"
+            exit 1
+          }
         shell: pwsh
 
       - name: Create zip package
