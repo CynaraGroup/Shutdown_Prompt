@@ -22,15 +22,9 @@ class ShutdownPrompt(QMainWindow):
         # 窗口透明
         self.setAttribute(Qt.WA_TranslucentBackground)
 
-        # 资源路径处理
-        def resource_path(relative_path):
-            if hasattr(sys, '_MEIPASS'):
-                return os.path.join(sys._MEIPASS,relative_path)
-            return os.path.join(os.path.abspath('.'),relative_path)
-
         # 加载外部字体
-        font_zqk_in = QFontDatabase.addApplicationFont(resource_path('zhengqingke.ttf'))
-        font_dt_in = QFontDatabase.addApplicationFont(resource_path('dingtalk.ttf'))
+        font_zqk_in = QFontDatabase.addApplicationFont('zhengqingke.ttf')
+        font_dt_in = QFontDatabase.addApplicationFont('dingtalk.ttf')
         font_zqk = QFontDatabase.applicationFontFamilies(font_zqk_in)
         font_dt = QFontDatabase.applicationFontFamilies(font_dt_in)
 
