@@ -1,12 +1,15 @@
-name: Build Windows EXE
+name: Build Windows EXE with Resources
 
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
-    name: Build EXE
+    name: Build EXE with Resources
     runs-on: windows-latest
     steps:
       - name: Checkout code
@@ -22,9 +25,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install pyqt5 pywin32 pyinstaller Pillow
 
-      - name: Compile to EXE using spec file
+      - name: Compile to EXE with resources
         run: |
-          pyinstaller -i logo.ico main_v2.py
+          pyinstaller -F -w -i logo.ico --add-data "dingtalk.ttf;%CD%" --add-data "zhengqingke.ttf;%CD%" main_v2.py
+
+      - name: Rename EXE
+        run: |
+          Rename-Item -Path dist\main_v2.exe -NewName dist\ShutdownPrompt.exe
+        shell: pwsh
 
       - name: Create zip package
         run: |
