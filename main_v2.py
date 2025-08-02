@@ -23,8 +23,8 @@ class ShutdownPrompt(QMainWindow):
         self.setAttribute(Qt.WA_TranslucentBackground)
 
         # 加载外部字体
-        font_zqk_in = QFontDatabase.addApplicationFont('zhengqingke.ttf')
-        font_dt_in = QFontDatabase.addApplicationFont('dingtalk.ttf')
+        font_zqk_in = QFontDatabase.addApplicationFont('assist/font/zhengqingke.ttf')
+        font_dt_in = QFontDatabase.addApplicationFont('assist/font/dingtalk.ttf')
         font_zqk = QFontDatabase.applicationFontFamilies(font_zqk_in)
         font_dt = QFontDatabase.applicationFontFamilies(font_dt_in)
 

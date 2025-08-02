@@ -27,7 +27,7 @@ jobs:
 
       - name: Compile to EXE with resources
         run: |
-          pyinstaller -F -w -i logo.ico --add-data "dingtalk.ttf;." --add-data "zhengqingke.ttf;." main_v2.py
+          pyinstaller -F -i assist/img/logo.ico --add-data "assist/font/dingtalk.ttf;." --add-data "assist/font/zhengqingke.ttf;." main_v2.py
 
       - name: Rename EXE
         run: |
