@@ -1,4 +1,4 @@
-![ShutdownPrompt](https://github.com/CynaraGroup/Shutdown_Prompt/blob/main/assist/img/logo.ico)
+![ShutdownPrompt](https://github.com/CynaraGroup/Shutdown_Prompt/blob/main/assist/img/SP.png)
 # <center>ShutdownPrompt</center>
 [![简体中文](https://img.shields.io/badge/简体中文-informational?style=for-the-badge)](README_zh.md)
 ![English](https://img.shields.io/badge/English-inactive?style=for-the-badge)

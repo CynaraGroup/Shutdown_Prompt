@@ -15,7 +15,7 @@ class ShutdownPrompt(QMainWindow):
 
     def init_UI(self):
         self.setWindowTitle('离班提示')
-        self.setFixedSize(800, 600)
+        self.setFixedSize(800, 500)
 
         # 隐藏标题栏、窗口置顶
         self.setWindowFlags(self.windowFlags() | Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
