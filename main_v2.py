@@ -6,6 +6,7 @@ from PyQt5.QtCore import Qt, QTimer, QRectF
 import win32com.client as win32
 import os
 import platform
+import sys  # 添加sys模块导入
 
 class ShutdownPrompt(QMainWindow):
     def __init__(self):
@@ -214,6 +215,12 @@ class ShutdownPrompt(QMainWindow):
         painter.drawPath(path)
 
 if __name__ == '__main__':
+    # 启用高DPI支持（添加这部分代码）
+    if hasattr(Qt, "AA_EnableHighDpiScaling"):
+        QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
+    if hasattr(Qt, "AA_UseHighDpiPixmaps"):
+        QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps, True)
+    
     app = QApplication(sys.argv)
     window = ShutdownPrompt()
     window.show()

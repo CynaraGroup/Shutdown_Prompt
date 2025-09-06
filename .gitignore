@@ -1,2 +1,5 @@
 .venv/*
 .idea/*
+build/*
+dist/*
+main_v2.spec
