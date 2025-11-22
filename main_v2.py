@@ -16,8 +16,7 @@ class ShutdownPrompt(QMainWindow):
 
     def init_UI(self):
         self.setWindowTitle('离班提示')
-        self.setFixedSize(800, 500)
-
+        self.setFixedSize(300, 200)
         # 隐藏标题栏、窗口置顶
         self.setWindowFlags(self.windowFlags() | Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
         # 窗口透明
@@ -56,7 +55,7 @@ class ShutdownPrompt(QMainWindow):
 
         # 大标题
         title_label = QLabel('离开教室前请关闭')
-        title_font = QFont(font_zqk[0], 48, QFont.Bold)
+        title_font = QFont(font_zqk[0], 24, QFont.Bold)
         title_label.setFont(title_font)
         title_label.setStyleSheet(
             '''
@@ -67,7 +66,7 @@ class ShutdownPrompt(QMainWindow):
 
         # 器材
         equipment_label = QLabel('空调|灯光|窗户|多媒体')
-        equipment_font = QFont('SimHei', 36, QFont.Bold)
+        equipment_font = QFont('SimHei', 18, QFont.Bold)
         equipment_label.setFont(equipment_font)
         equipment_label.setStyleSheet('color: rgb(255, 99, 71);')  # 红色
         layout.addWidget(equipment_label, alignment=Qt.AlignCenter)
@@ -79,21 +78,20 @@ class ShutdownPrompt(QMainWindow):
 
         # OS即将关闭：
         down_label = QLabel('OS即将关闭：')
-        down_font = QFont('SimHei', 24, QFont.Bold)
+        down_font = QFont('SimHei', 12, QFont.Bold)
         down_label.setFont(down_font)
         down_label.setStyleSheet('color: rgb(105, 105, 105); margin: 0px; padding: 0px;')
         down_label.setAlignment(Qt.AlignCenter)  # 设置标签文本居中
         left_layout.addWidget(down_label)
 
         # 倒计时
-        # solve
         countdown_container = QWidget()
         countdown_layout = QVBoxLayout(countdown_container)  # 改为垂直布局
         countdown_layout.setSpacing(20)
         countdown_layout.setContentsMargins(20, 0, 20, 0)
         # 数字渲染
-        self.time_label = QLabel('60')
-        time_font = QFont(font_dt[0], 64, QFont.Bold)
+        self.time_label = QLabel('30')
+        time_font = QFont(font_dt[0], 32, QFont.Bold)
         self.time_label.setFont(time_font)
         self.time_label.setStyleSheet(
             '''
@@ -117,8 +115,8 @@ class ShutdownPrompt(QMainWindow):
                 background-color: rgb(180, 180, 180);
                 color: white;
                 border-radius: 15px;
-                padding: 10px 20px;
-                font-size: 52px;
+                padding: 5px 10px;
+                font-size: 13px;
                 font-family: 'SimHei';
             }
             QPushButton:hover {
@@ -126,14 +124,38 @@ class ShutdownPrompt(QMainWindow):
             }
             '''
         )
+        # 新增立即关机按钮
+        immediate_btn = QPushButton("立即关机")
+        immediate_btn.setStyleSheet(
+            '''
+            QPushButton {
+                background-color: rgb(255, 99, 71);
+                color: white;
+                border-radius: 15px;
+                padding: 5px 10px;
+                font-size: 13px;
+                font-family: 'SimHei';
+            }
+            QPushButton:hover {
+                background-color: rgb(220, 20, 60);
+            }
+            '''
+        )
         # 点击事件
         shutdown_btn.clicked.connect(self.show_confirm_dialog)
-        countdown_layout.addWidget(shutdown_btn, alignment=Qt.AlignCenter)
+        immediate_btn.clicked.connect(self.immediate_shutdown)
+
+        # 横向布局放两个按钮
+        btn_layout = QHBoxLayout()
+        btn_layout.setSpacing(10)
+        btn_layout.addWidget(shutdown_btn)
+        btn_layout.addWidget(immediate_btn)
+        countdown_layout.addLayout(btn_layout)
         layout.addWidget(countdown_container)
 
         # 版权信息
-        copyright_label = QLabel('© 2025 Cynara, All rights reserved\n萌ICP备20250202号')
-        copyright_font = QFont('SimHei', 10)
+        copyright_label = QLabel('© 2025 Cynara All rights reserved\n宜宾市汐奈寻梦工作室出品')
+        copyright_font = QFont('SimHei', 5)
         copyright_label.setFont(copyright_font)
         copyright_label.setStyleSheet(
             '''
@@ -196,6 +218,11 @@ class ShutdownPrompt(QMainWindow):
     def shutdown_system(self):
         system = platform.system()
         os.system("shutdown -s -f -t 0")
+
+    # 新增方法：立即关机
+    def immediate_shutdown(self):
+        self.save_office_documents()
+        self.shutdown_system()
 
     # 绘制圆角窗口 - 完善此方法（关键修改）
     def paintEvent(self, event):
